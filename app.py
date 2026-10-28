@@ -351,7 +351,7 @@ HTML_PAGE = """
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        let balance = 100; // መነሻ 100 ብር
+        let balance = 30; // መነሻ 30 ብር
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
         let wheelItems = ["Lucy", ...letters];
