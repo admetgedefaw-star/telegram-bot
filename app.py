@@ -283,7 +283,7 @@ HTML_PAGE = """
         <div class="subtitle">ፊደላት (A-G) እና ሉሲ ቦነስ ጨዋታ</div>
 
         <div class="balance-box">
-            ቀሪ ሂሳብ: <span id="balance">100</span> ብር
+            ቀሪ ሂሳብ: <span id="balance">30</span> ብር
         </div>
 
         <div class="result-display-banner">
