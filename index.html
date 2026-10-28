@@ -1,0 +1,38 @@
+function submitDeposit() {
+    let txId = document.getElementById("depTxId").value.trim();
+    let phone = document.getElementById("depPhone").value.trim();
+    let bonusVal = document.getElementById("bonusChoice").value;
+
+    if (!txId || !phone) {
+        alert("እባክዎን የ Transaction ID እና የስልክ ቁጥር ያስገቡ!");
+        return;
+    }
+
+    let user = tg.initDataUnsafe.user || { id: 12345, first_name: "Guest" };
+    let depositAmount = bonusVal === "200" ? 300 : 200; // የተጠየቀው አጠቃላይ መጠን
+
+    // ወደ Render ሰርቨር መረጃውን መላክ
+    fetch('/api/deposit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_id: user.id,
+            user_name: user.first_name,
+            phone: phone,
+            tx_id: txId,
+            amount: depositAmount
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("የዲፖዚት እና የቦነስ ጥያቄዎ በአስተዳዳሪው ዘንድ ተልኳል! ክፍያው ሲረጋገጥ ሂሳብዎ ይስተካከላል።");
+        } else {
+            alert("ስህተት ተፈጥሯል: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("የኔትወርክ ስህተት አጋጥሟል!");
+    });
+}
